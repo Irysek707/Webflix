@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+
+body {
+  background-image: linear-gradient(to right top, #001675, #0c1762, #13174f, #16163c, #16152a, #1c162a, #21172a, #26182a, #3e1734, #5a1034, #73012b, #870019);
+  color: #F2F2F2 !important;
+  font-family: 'Roboto', sans-serif;
+  text-align: justify;
+}
+
+
+nav {
+  color: #F2F2F2 !important;
+  font-family: 'Roboto', sans-serif, bold;
+}
+
+.footer {
+  background-color: #0d0d0d;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: space-around;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.footer img {
+  max-height: 35px;
+}
+
+a {
+  color: #F2F2F2 !important;
+}
+
+nav a {
+  color: #F2F2F2 !important;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+
+}
+
+h3 {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+h4 {
+  font-family: 'Oswald', sans-serif;
+}
+
+h5 {
+  font-family: 'Oswald', sans-serif;
+}
+
+h6 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem !important;
+}
+
+.dropdown-menu {
+  background-color: #180e19;
+  color: #F2F2F2 !important;
+}
+
+.dropdown-menu :hover {
+  background-color: #730202 !important;
+  color: #F2F2F2 !important;
+}
+
+.icon {
+  height: 30px;
+}
+
+.card-img-top {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.elo {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.card {
+  margin: 10px;
+  text-align: center;
+  font-family: 'Anton', sans-serif;
+  background-color: #0d0d0d;
+  color: #F2F2F2;
+}
+
+.btn {
+  background-image: linear-gradient(to bottom, #400101, #350516, #260c1c, #180e19, #0d0d0d);
+  border: #0d0d0d 1px solid;
+  color: #F2F2F2;
+}
+
+.btn a {
+  color: #F2F2F2 !important;
+}
+
+.btn a:hover {
+  text-decoration: none !important;
+}
+
+.alert {
+  margin: 10px !important;
+}
+
+.alert-dark {
+  background-color: #180e19 !important;
+  color: #F2F2F2 !important;
+  border: #0d0d0d 3px !important;
+  box-shadow: #260c1c 2px 2px 0px;
+}
+
+.modal-content {
+  background-image: linear-gradient(to bottom, #400101, #350516, #260c1c);
+}
+
+.card-body {
+  background-color: #0d0d0d !important;
+}
+
+.list-group-item {
+  background-color: #0d0d0d !important;
+}
