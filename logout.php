@@ -16,10 +16,7 @@ $_SESSION = array();
 session_destroy();
 
 #Display body section.
-include('index.php');
-
-# Display footer section.
-include('includes/footer.php');
+include('landing.php');
 
 
 ?>

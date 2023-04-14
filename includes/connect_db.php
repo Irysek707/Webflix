@@ -6,4 +6,11 @@ if (!$link) {
 	# Otherwise fail gracefully and explain the error.
 	die('Could not connect to MySQL: ' . mysqli_error());
 }
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
 ?>

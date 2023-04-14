@@ -24,7 +24,7 @@ if (isset($_GET['id']))
 require('includes/connect_db.php');
 
 #Retrive selective item data from 'movie' database table.
-$q = "SELECT * FROM movie WHERE id = $id";
+$q = "SELECT * FROM movie_stream WHERE id = $id";
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) == 1) {
 	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);

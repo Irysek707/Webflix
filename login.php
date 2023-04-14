@@ -1,4 +1,4 @@
-<title>ECinema | Login to the website</title>
+<title>Webflix | Login to the website</title>
 
 <?php
 #Include HTML static file login.html
@@ -21,11 +21,12 @@ if (isset($errors) && !empty($errors)) {
   <div class="row g-3">
     <form action="login_action.php" method="post">
       <div class="col">
-        <input type="email" class="form-control" placeholder="Email" aria-label="First name" name="email">
+        <input type="email" class="form-control" placeholder="Email" aria-label="email" name="email">
       </div><br />
       <div class="col">
-        <input type="password" class="form-control" placeholder="Password" aria-label="Last name" name="pass">
+        <input type="password" class="form-control" placeholder="Password" aria-label="password" name="pass">
       </div><br />
+      <a href="forgot_password.php">Forgot password?</a><br/>
       <div class="col elo">
         <input type="submit" class="btn btn-dark" value="Login"><a href="register.php"><button type="button"
             class="btn btn-dark">Register</button></a>

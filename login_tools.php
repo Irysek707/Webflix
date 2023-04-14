@@ -38,7 +38,7 @@ function validate($link, $email = '', $pwd = '')
         }
         # Or on failure set error message.
         else {
-            $errors[] = 'Email address and password not found.';
+            $errors[] = 'Email address or password not found.';
         }
     }
     # On failure retrieve error message/s.

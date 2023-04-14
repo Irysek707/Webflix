@@ -7,76 +7,91 @@ include('includes/login.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require('includes/connect_db.php');
-    $errors = array();
-    if (empty($_POST['first_name'])) {
-        $errors[] = 'Enter your first name.';
-    } else {
-        $fn = mysqli_real_escape_string($link, trim($_POST['first_name']));
-    }
-    if (empty($_POST['last_name'])) {
-        $errors[] = 'Enter your last name.';
-    } else {
-        $ln = mysqli_real_escape_string($link, trim($_POST['last_name']));
-    }
-    if (empty($_POST['email'])) {
-        $errors[] = 'Enter your email.';
-    } else {
-        $e = mysqli_real_escape_string($link, trim($_POST['email']));
-    }
-    if (!empty($_POST['pass1'])) {
-        if ($_POST['pass1'] != $_POST['pass2']) {
-            $errors[] = 'Passwords do not match.';
+    // Check if the checkbox is checked
+    if (isset($_POST['terms'])) {
+        // Checkbox is checked, continue with registration
+        // Add your registration code here
+        $errors = array();
+        if (empty($_POST['first_name'])) {
+            $errors[] = 'Enter your first name.';
         } else {
-            $p = mysqli_real_escape_string($link, trim($_POST['pass1']));
+            $fn = mysqli_real_escape_string($link, trim($_POST['first_name']));
+        }
+        if (empty($_POST['last_name'])) {
+            $errors[] = 'Enter your last name.';
+        } else {
+            $ln = mysqli_real_escape_string($link, trim($_POST['last_name']));
+        }
+        if (empty($_POST['email'])) {
+            $errors[] = 'Enter your email.';
+        } else {
+            $e = mysqli_real_escape_string($link, trim($_POST['email']));
+        }
+        if (!empty($_POST['pass1'])) {
+            if ($_POST['pass1'] != $_POST['pass2']) {
+                $errors[] = 'Passwords do not match.';
+            } else {
+                $p = mysqli_real_escape_string($link, trim($_POST['pass1']));
+            }
+        } else {
+            $errors[] = 'Enter your password.';
+        }
+        if (empty($_POST['card_number'])) {
+            $errors[] = 'Enter your card number.';
+        } else {
+            $cn = mysqli_real_escape_string($link, trim($_POST['card_number']));
+        }
+        if (empty($_POST['exp_month'])) {
+            $errors[] = 'Enter your card\'s expiration month.';
+        } else {
+            $exp_m = mysqli_real_escape_string($link, trim($_POST['exp_month']));
+        }
+        if (empty($_POST['exp_year'])) {
+            $errors[] = 'Enter your card\'s expiration year.';
+        } else {
+            $exp_y = mysqli_real_escape_string($link, trim($_POST['exp_year']));
+        }
+        if (empty($_POST['cvv'])) {
+            $errors[] = 'Enter your card\'s CVV.';
+        } else {
+            $cvv = mysqli_real_escape_string($link, trim($_POST['cvv']));
+        }
+        if (empty($errors)) {
+            $q = "SELECT user_id FROM users WHERE email=$e";
+            $r = @mysqli_query($link, $q);
+            if (mysqli_num_rows($r) != 0)
+                $errors[] = 'Email address already registered.';
+        }
+        
+        if (empty($_POST['security_question_1'])) {
+            $errors[] = 'Enter the answer to the security question.';
+        } else {
+            $sq = mysqli_real_escape_string($link, trim($_POST['security_question_1']));
+        }
+        if (empty($errors)) {
+            $q = "INSERT INTO users
+            (first_name, last_name, email, pass, card_number, exp_month, exp_year, cvv, security_question_1, reg_date)
+            VALUES ('$fn','$ln','$e', SHA2('$p',256),$cn, $exp_m, $exp_y, $cvv, '$sq', NOW())";
+            $r = @mysqli_query($link, $q);
+            if ($r) {
+                echo '<div class="container"><p>You are now registered.</p><a href="login.php"></div>
+                <div class="container"><button class="btn btn-dark" type="button">Login</button></a></div>';
+            }
+            mysqli_close($link);
+            exit();
+        } else {
+            echo '<h1>Error!</h1><p id="err_msg">The following error(s) occurred:<br>';
+            foreach ($errors as $msg) {
+                echo " - $msg<br>";
+            }
+            echo 'Please try again</p>';
+            mysqli_close($link);
         }
     } else {
-        $errors[] = 'Enter your password.';
+        // Checkbox is not checked, display error message
+        echo "Please accept the terms and conditions.";
     }
-    if (empty($_POST['card_number'])) {
-        $errors[] = 'Enter your card number.';
-    } else {
-        $cn = mysqli_real_escape_string($link, trim($_POST['card_number']));
-    }
-    if (empty($_POST['exp_month'])) {
-        $errors[] = 'Enter your card\'s expiration month.';
-    } else {
-        $exp_m = mysqli_real_escape_string($link, trim($_POST['exp_month']));
-    }
-    if (empty($_POST['exp_year'])) {
-        $errors[] = 'Enter your card\'s expiration year.';
-    } else {
-        $exp_y = mysqli_real_escape_string($link, trim($_POST['exp_year']));
-    }
-    if (empty($_POST['cvv'])) {
-        $errors[] = 'Enter your card\'s CVV.';
-    } else {
-        $cvv = mysqli_real_escape_string($link, trim($_POST['cvv']));
-    }
-    if (empty($errors)) {
-        $q = "SELECT user_id FROM users WHERE email=$e";
-        $r = @mysqli_query($link, $q);
-        if (mysqli_num_rows($r) != 0)
-            $errors[] = 'Email address already registered.';
-    }
-    if (empty($errors)) {
-        $q = "INSERT INTO users
-        (first_name, last_name, email, pass, card_number, exp_month, exp_year, cvv, reg_date)
-        VALUES ('$fn','$ln','$e', SHA2('$p',256),$cn, $exp_m, $exp_y, $cvv, NOW())";
-        $r = @mysqli_query($link, $q);
-        if ($r) {
-            echo '<div class="container"><p>You are now registered.</p><a href="login.php"></div>
-            <div class="container"><button class="btn btn-dark" type="button">Login</button></a></div>';
-        }
-        mysqli_close($link);
-        exit();
-    } else {
-        echo '<h1>Error!</h1><p id="err_msg">The following error(s) occurred:<br>';
-        foreach ($errors as $msg) {
-            echo " - $msg<br>";
-        }
-        echo 'Please try again</p>';
-        mysqli_close($link);
-    }
+
 }
 
 //Validation
@@ -99,6 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email_error = "Invalid email format";
         }
     }
+
 }
 
 function test_input($data)
@@ -163,7 +179,26 @@ function test_input($data)
                     name="exp_year" id="exp_year">
             </div>
         </div>
-        <br />
+        <br/>
+        <h3>Security question</h3>
+        Your mother's maiden name.
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Answer" aria-label="Security" name="security_question_1"
+                    id="security_question_1">
+            </div>
+        </div>
+        
+        <br/>
+
+        
+
+        <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                    <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" name="terms"/>
+                    <label class="form-check-label text-white" for="form2Example3">
+                      I do accept the <a href="#!" class="text-white"><u>Terms and Conditions</u></a> of Webflix.
+                    </label>
+        </div>
         <div class="col-12 elo">
             <button class="btn btn-dark" type="submit">Register</button><a href="login.php"><button
                     class="btn btn-dark" type="button">Login</button></a>
