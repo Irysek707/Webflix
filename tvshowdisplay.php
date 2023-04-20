@@ -21,7 +21,7 @@
                 if (array_key_exists('movie_title', $row)) {
                     echo '<a href="movie.php?id=' . $row['id'] . '" class="btn btn-secondary">Watch Now</a>';
                 } else {
-                    echo '<a href="tvshow.php?id=' . $row['id'] . '" class="btn btn-secondary">Watch Now</a>';
+                    echo '<a href="tvshow.php?id=' . $row['tvshow_id'] . '" class="btn btn-secondary">Watch Now</a>';
                 }
 
                 echo'</div>

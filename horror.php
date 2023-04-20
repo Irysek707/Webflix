@@ -32,7 +32,7 @@
                 <img src="' . $row['img'] . '" class="card-img-top" alt="TV Show">
                 <div class="card-body">
                 <h4 class="card-title">' . $row['tvshow_title'] .  '</h4>
-                <a href="tvshow.php?id=' . $row['id'] . '" class="btn btn-secondary">Watch Now</a>
+                <a href="tvshow.php?id=' . $row['tvshow_id'] . '" class="btn btn-secondary">Watch Now</a>
                 </div>
             </div>';
         }

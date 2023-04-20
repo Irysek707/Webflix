@@ -26,84 +26,29 @@ require('includes/connect_db.php');
 #Retrive selective item data from 'movie' database table.
 $q = "SELECT * FROM movie_stream WHERE id = $id";
 $r = mysqli_query($link, $q);
-if (mysqli_num_rows($r) == 1) {
-	$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+// Display movies
+if ($r->num_rows > 0) {
+	while($row = $r->fetch_assoc()) {
+		// Check user subscription
+		$subscribed = true; // Replace with actual check
 
-	# Check if cart already contains one movie id.
-	if (isset($_SESSION['cart'][$id])) {
-		# Add one more of this product.
-		$_SESSION['cart'][$id]['quantity']++;
-		echo '<div class="container">
-			<h1 class="display-4">' . $row['movie_title'] . '</h1>
-		<div class="row">
-			<div class="col-sm-12 col-md-4">
-			  <div class="embed-responsive embed-responsive-16by9">
-				<iframe class="embed-responsive-item" src=' . $row['preview'] . ' 
-					frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-					allowfullscreen>
-				</iframe>
-			   </div>
-			</div>
-			<div class="col-sm-12 col-md-4">
-				<p>' . $row['further_info'] . '</p>
-			</div>
-			<div class="col-sm-12 col-md-4">
-				<h4>Book Now</h4>
-				<hr>
-				<h2>
-				  <a href="show1.php"> <button type="button" class="btn btn-secondary" role="button"> ' . $row['show1'] . ' </button></a>
-				  <a href="show2.php"> <button type="button" class="btn btn-secondary" role="button"> ' . $row['show2'] . ' </button></a>
-				  <a href="show3.php"> <button type="button" class="btn btn-secondary" role="button"> ' . $row['show3'] . ' </button></a>
-				</h2><br/>
-				<h4>Movie Reviews</h4>
-				<hr>
-				  <p>
-				  <a href="mov-rev.php?movie_title=' . $row['movie_title'] . '">
-				  <span class="btn btn-secondary">This Movie </span></a>
-				  <a href="all_reviews.php?id=' . $row['id'] . '">
-				  <span class="btn btn-secondary">All Movies</span> </a>
-				</p>  
-			</div>
-		';
+		echo "<tr>";
+		echo "<td>" . $row["id"] . "</td>";
+		echo "<td>" . $row["movie_title"] . "</td>";
+		echo "<td><iframe width='300' height='200' src='" . $row["movie_trailer"] . "'></iframe></td>";
 
+		// Display stream or subscribe button
+		if ($subscribed) {
+			echo "<td><a href='" . $row["movie_stream"] . "'>Watch Now</a></td>";
+		} else {
+			echo "<td><button class='btn'>Subscribe</button></td>";
+		}
 
-	} else {
-		# Or add one of this product to the cart.
-		$_SESSION['cart'][$id] = array('quantity' => 1, 'price' => $row['mov_price']);
-		echo '<div class="container">
-			<h1 class="display-4">' . $row['movie_title'] . '</h1>
-		<div class="row">
-			<div class="col-sm-12 col-md-4">
-			  <div class="embed-responsive embed-responsive-16by9">
-				<iframe class="embed-responsive-item" src=' . $row['preview'] . ' 
-					frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-					allowfullscreen>
-				</iframe>
-			   </div>
-			</div>
-			<div class="col-sm-12 col-md-4">
-				<p>' . $row['further_info'] . '</p>
-			</div>
-			<div class="col-sm-12 col-md-4">
-				<h4>Book Now</h4>
-				<hr>
-				<h2>
-				  <a href="show1.php"> <button type="button" class="btn btn-secondary" role="button"> ' . $row['show1'] . ' </button></a>
-				  <a href="show2.php"> <button type="button" class="btn btn-secondary" role="button"> ' . $row['show2'] . ' </button></a>
-				  <a href="show3.php"> <button type="button" class="btn btn-secondary" role="button"> ' . $row['show3'] . ' </button></a>
-				</h2><br/>
-				 <h4>Movie Reviews</h4>
-				<hr>
-				  <p>
-				  <a href="mov-rev.php?movie_title=' . $row['movie_title'] . '">
-				  <span class="btn btn-secondary">This Movie </span></a>
-				  <a href="all_reviews.php?id=' . $row['id'] . '">
-				  <span class="btn btn-secondary">All Movies</span> </a>
-				</p> 
-			</div>
-		</div>';
+		echo "<td><img src='" . $row["img"] . "' alt='" . $row["movie_title"] . "'></td>";
+		echo "</tr>";
 	}
 }
+
 
 # Close database connection.
 mysqli_close($link);
