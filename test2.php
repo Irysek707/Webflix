@@ -1,20 +1,30 @@
+<title>Webflix</title>
+<?php
+include('includes/logout.php');
+?>
+
+<div class="container">
+    <h1 style="font-size: 5rem;">Welcome to Webflix</h1>
+</div>
+<br/>
+
 <?php
     # Open database connection
     require('includes/connect_db.php');
 
-    # Retrieve titles tagged as Fantasy from movie_stream table
-    $q = "SELECT * FROM movie_stream WHERE genre_name = 'Fantasy'";
+    # Retrieve titles tagged as Action from movie_stream table
+    $q = "SELECT * FROM movie_stream WHERE genre_name = 'Action'";
     $r = mysqli_query($link, $q);
 
-    # Retrieve titles tagged as Fantasy from tv_show table
-    $q2 = "SELECT * FROM tv_show WHERE genre_name = 'Fantasy'";
+    # Retrieve titles tagged as Action from tv_show table
+    $q2 = "SELECT * FROM tv_show WHERE genre_name = 'Action'";
     $r2 = mysqli_query($link, $q2);
 
-    echo '<h3>Fantasy</h3>';
+    echo '<h3>Action</h3>';
 
     # Display movies and TV shows in carousel
 ?>
-<div id="MyCarosel5" class="carousel slide" data-ride="carousel" data-interval="false">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
 
         <?php
@@ -54,11 +64,11 @@
         ?>
         
     </div>
-    <a class="carousel-control-prev" href="#MyCarosel5" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#MyCarosel5" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
@@ -74,4 +84,7 @@
     }
     
     echo '</div>';
+
+    #Display footer section
+    include('includes/footer.php');
 ?>

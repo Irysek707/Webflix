@@ -6,7 +6,7 @@ echo '<div class="footer">
 <div class="col">About</div>
 <div class="col">Careers</div>
 <div class="col">Press</div>
-<div class="col">Policy</div>
+<div class="col"><a href="policy.php">Policy</a></div>
 </div>
 </div>
 

@@ -1,5 +1,7 @@
+<title>Webflix | Forgot password</title>
+
 <?php
-include('includes/login.php');
+include('includes/navbar.php');
 require('includes/connect_db.php'); // include the database connection file
 
 if(isset($_POST['submit'])) {
@@ -37,26 +39,23 @@ if(isset($_POST['submit'])) {
 
 ?>
 
-
+<h1>Forgot password</h1>
+<br />
 <div class="container">
   <div class="row g-3">
-    <form action="" method="post">
+    <form action="" method="post" class="form3">
       <div class="col">
         <input type="email" class="form-control" placeholder="Email" aria-label="email" name="email" required>
-      </div><br />Security question: Your mother's maiden name.
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Answer" aria-label="security" name="security_answer" required>
-      </div><br />
+      </div><br/>
       <div class="col">
         <input type="password" class="form-control" placeholder="New password" aria-label="password" name="new_password" required>
-      </div><br />
-      <input type="submit" name="submit" value="Reset Password">
-
-      <div class="col elo">
-      <a href="login.php"><button type="button"
-            class="btn btn-dark">Sign in</button></a><a href="register.php"><button type="button"
-            class="btn btn-dark">Register</button></a>
-      </div>
+      </div><br /><br />
+      <h3>Security question</h3>
+      <center>Your mother's maiden name.</center>
+      <div class="col">
+        <input type="password" class="form-control" placeholder="Answer" aria-label="security" name="security_answer" required>
+      </div><br /><br />
+      <input type="submit" name="submit" value="Reset Password" class="btn btn-dark  btn-block">
     </form>
   </div>
 </div>

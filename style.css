@@ -6,14 +6,14 @@
 
 body {
   background-image: linear-gradient(to right top, #001675, #0c1762, #13174f, #16163c, #16152a, #1c162a, #21172a, #26182a, #3e1734, #5a1034, #73012b, #870019);
-  color: #F2F2F2 !important;
+  color: #a8a8a8 !important;
   font-family: 'Roboto', sans-serif;
   text-align: justify;
 }
 
 
 nav {
-  color: #F2F2F2 !important;
+  color: #a8a8a8 !important;
   font-family: 'Roboto', sans-serif, bold;
 }
 
@@ -31,17 +31,22 @@ nav {
 }
 
 a {
-  color: #F2F2F2 !important;
+  color: #a8a8a8 !important;
 }
 
 nav a {
-  color: #F2F2F2 !important;
+  color: #a8a8a8 !important;
 }
 
 h1 {
   text-align: center;
   font-family: 'Oswald', sans-serif;
+}
 
+h2 {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+  
 }
 
 h3 {
@@ -51,6 +56,7 @@ h3 {
 
 h4 {
   font-family: 'Oswald', sans-serif;
+  text-align: left;
 }
 
 h5 {
@@ -64,12 +70,12 @@ h6 {
 
 .dropdown-menu {
   background-color: #180e19;
-  color: #F2F2F2 !important;
+  color: #a8a8a8 !important;
 }
 
 .dropdown-menu :hover {
-  background-color: #730202 !important;
-  color: #F2F2F2 !important;
+  background-color: #21172a !important;
+  color: #a8a8a8 !important;
 }
 
 .icon {
@@ -91,23 +97,40 @@ h6 {
   justify-content: space-around;
 }
 
+#accordion {
+  width: 100%;
+  max-width: 800px; /* Set a maximum width if needed */
+}
+
 
 .card {
   margin: 10px;
   text-align: center;
-  font-family: 'Anton', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #0d0d0d;
-  color: #F2F2F2;
+  color: #a8a8a8;
+}
+
+.card img {
+  width: 250px;
+  height: 400px;
+  object-fit: cover;
 }
 
 .btn {
-  background-image: linear-gradient(to bottom, #400101, #350516, #260c1c, #180e19, #0d0d0d);
-  border: #0d0d0d 1px solid;
-  color: #F2F2F2;
+  background-image: radial-gradient(circle, #1f1f1f, #222222, #242424, #272727, #2a2a2a);
+  border: #272727 1px solid;
+  color: #a8a8a8;
+}
+
+.btn2 {
+  background-color: #0d0d0d !important;
+  background-image: none !important;
+  border: #0d0d0d 1px solid !important;
 }
 
 .btn a {
-  color: #F2F2F2 !important;
+  color: #a8a8a8 !important;
 }
 
 .btn a:hover {
@@ -120,7 +143,7 @@ h6 {
 
 .alert-dark {
   background-color: #180e19 !important;
-  color: #F2F2F2 !important;
+  color: #a8a8a8 !important;
   border: #0d0d0d 3px !important;
   box-shadow: #260c1c 2px 2px 0px;
 }
@@ -133,12 +156,39 @@ h6 {
   background-color: #0d0d0d !important;
 }
 
+.btn-link {
+  font-size: 2rem;
+}
+
+.btn-link:hover, .btn-link:active, .btn-link:focus {
+  color: #a8a8a8;
+  text-decoration: none;
+}
+
 .list-group-item {
   background-color: #0d0d0d !important;
 }
 
+#subscription {
+  background-color: #0d0d0d;
+}
+
+#subscription .card-body {
+  background-image: linear-gradient(to right top, #001675, #0c1762, #13174f, #16163c, #16152a, #1c162a, #21172a, #26182a, #3e1734, #5a1034, #73012b, #870019);
+}
+
+
 
 /* Carousel */
+.container2 {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.card3 {
+  display: inline-block !important;
+}
+
 .carousel {
 	margin: 30px auto 60px;
 	padding: 0 80px;
@@ -152,7 +202,6 @@ h6 {
 }
 .carousel .carousel-item img {
 	max-width: 100%;
-	display: inline-block;
 }
 .carousel .carousel-item .btn {
 	border-radius: 0;
@@ -187,6 +236,8 @@ h6 {
 	width: 44px;
 	background: none;	
 	margin: auto 0;
+  margin-left: 20%;
+  margin-right: 20%;
 	border-radius: 50%;
 	border: 3px solid rgba(223, 220, 220, 0.8);
 }
@@ -203,6 +254,8 @@ h6 {
 	text-shadow: none;
 	font-weight: bold;
 }
+
+
 .carousel-control-prev i {
 	margin-left: -3px;
 }
@@ -224,4 +277,31 @@ h6 {
 }
 .carousel-indicators li.active {	
 	background: #555;
+}
+
+/* Form */
+.form2 {
+  width: 80%;
+  max-width: 500px;
+  background-color: rgba(13, 13, 13, 0.5);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.form3 {
+  width: 100%;
+  max-width: 500px;
+  background-color: rgba(13, 13, 13, 0.5);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.conditions {
+  width: 190%;
+  max-width: 1000px;
+  background-color: rgba(13, 13, 13, 0.5);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

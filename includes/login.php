@@ -22,15 +22,7 @@
 <?php
 
     echo '<nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="index.php" style="font-family: \'Anton\', sans-serif;"><img class="icon" src="img/logo2.png"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-              </ul>
-            </div>
+        <a class="navbar-brand" href="index.php"><h4>WEBFLIX</h4></a>
         </nav>
         <br/>';
 

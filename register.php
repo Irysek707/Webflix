@@ -1,4 +1,4 @@
-<title>ECinema | Register to the website</title>
+<title>Webflix | Sign up</title>
 
 <?php
 
@@ -129,7 +129,7 @@ function test_input($data)
 <h1>Registration form</h1>
 <br />
 <div class="container">
-    <form action="register.php" method="post">
+    <form action="register.php" method="post" class="form2">
         <div class="row">
             <div class="col">
                 <input type="text" class="form-control" placeholder="First name" aria-label="First name"
@@ -179,30 +179,28 @@ function test_input($data)
                     name="exp_year" id="exp_year">
             </div>
         </div>
-        <br/>
+        <br/><br/>
         <h3>Security question</h3>
         Your mother's maiden name.
         <div class="row">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Answer" aria-label="Security" name="security_question_1"
+                <input type="password" class="form-control" placeholder="Answer" aria-label="Security" name="security_question_1"
                     id="security_question_1">
             </div>
         </div>
         
         <br/>
 
-        
-
         <div class="form-check d-flex justify-content-start mb-4 pb-3">
                     <input class="form-check-input me-3" type="checkbox" value="" id="form2Example3c" name="terms"/>
-                    <label class="form-check-label text-white" for="form2Example3">
-                      I do accept the <a href="#!" class="text-white"><u>Terms and Conditions</u></a> of Webflix.
+                    <label class="form-check-label" for="form2Example3">
+                      I do accept the <a href="terms.php" target="_blank" class=""><u>Terms and Conditions</u></a> of Webflix.
                     </label>
         </div>
         <div class="col-12 elo">
-            <button class="btn btn-dark" type="submit">Register</button><a href="login.php"><button
-                    class="btn btn-dark" type="button">Login</button></a>
+            <button class="btn btn-dark  btn-block" type="submit">Register</button>
         </div>
+        <br/><center>If you already have an account <a href="login.php">Sign in here</a>.</center>
 </div>
 </form>
 </div>
