@@ -65,7 +65,7 @@
   
     <form class="d-flex" role="search" method="GET" action="">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
-        <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
+        <!-- <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button> -->
     </form>
   </div>
 </nav>
@@ -91,15 +91,17 @@ if (isset($_GET['query'])) {
     echo '<ul>';
     while ($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)) {
       $url = 'movie.php?id=' . $row['id'];
-      echo '<li><a href="' . $url . '">' . $row['title'] . '</a></li>';
+      header("Location: $url");
+      exit();
     }
     while ($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
       $url = 'tvshow.php?id=' . $row['tvshow_id'];
-      echo '<li><a href="' . $url . '">' . $row['title'] . '</a></li>';
+      header("Location: $url");
+      exit();
     }
     echo '</ul>';
   } else {
-    echo 'No results found.';
+    echo '<center>No results found.</center>';
   }
 }
 

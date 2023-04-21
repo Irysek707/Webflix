@@ -6,6 +6,7 @@ include('includes/logout.php');
 
 echo('
 <!-- Section 2: Subscription Info -->
+<div class="wrapper">
 <section id="subscription" class="text-center py-5">
 	<div class="container-fluid">
 		<h2>Subscription Plans</h2>
@@ -43,7 +44,8 @@ echo('
 			</div>
 		</div>
 	</div>
-</section>');
+</section>
+</div>');
 
 
 include('includes/footer.php');

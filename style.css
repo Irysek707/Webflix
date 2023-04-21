@@ -11,6 +11,11 @@ body {
   text-align: justify;
 }
 
+.wrapper {
+  
+  min-height: 77.7vh;
+}
+
 
 nav {
   color: #a8a8a8 !important;
@@ -90,7 +95,25 @@ h6 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
+
+.movie-view {
+  background-color: rgba(13, 13, 13, 0.5);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.flex-container {
+  display: flex;
+}
+
+.box {
+  padding: 20px;
+  margin: 10px;
+}
+
 
 .elo {
   display: flex;
