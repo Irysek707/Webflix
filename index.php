@@ -4,7 +4,6 @@
 <?php
 
 #Set page title and display header section
-$page_title = 'Home';
 include('includes/logout.php');
 
 echo '<div class="container"><h1 style="font-size: 5rem;">Welcome to Webflix</h1></div><br/>';
