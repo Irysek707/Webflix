@@ -63,6 +63,8 @@ if (mysqli_num_rows($r) > 0) {
 # Retrieve items from 'users' database table.
 $q = "SELECT * FROM users WHERE user_id={$_SESSION[user_id]}";
 $r = mysqli_query($link, $q);
+
+
 if (mysqli_num_rows($r) > 0) {
 
 	echo '<div class="col-sm">';
@@ -99,6 +101,51 @@ if (mysqli_num_rows($r) > 0) {
 		</div>
 		
 ';
+}
+
+# Retrieve items from 'users' database table.
+$q = "SELECT * FROM subscriptions WHERE user_id={$_SESSION[user_id]}";
+$r = mysqli_query($link, $q);
+
+
+if (mysqli_num_rows($r) > 0) {
+
+	echo '<div class="col-sm">';
+
+	while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+		echo '
+	
+		<div class="alert alert-dark" alert-dismissible fade show" role="alert">
+		   </button>
+			<h1>Subscription</h1><hr>
+			Subscription status : ' . $row['status'] . ' </p><hr/>';
+
+			if ($row['status'] == "active" ){
+
+		echo'
+			Expiration date : ' . $row['expiration_date'] . ' </p>
+		</div>
+	</div>
+	';}
+	else {
+		echo'
+        <a href="subscription.php" style="text-decoration: none !important"><button type="button" class="btn btn-dark btn-block">Subscribe now</button></a>';
+	}
+	}
+
+	# Close database connection.
+	#mysqli_close( $link ) ; 
+} else {
+	echo '<div class="col-sm">
+	<div class="alert alert-dark" alert-dismissible fade show" role="alert">
+		   </button>
+			<h1>Subscription</h1><hr>
+			Subscription status : inactive </p><hr/>
+			<a href="subscription.php" style="text-decoration: none !important"><button type="button" class="btn btn-dark btn-block">Subscribe now</button></a>
+		</div>
+	</div>
+	';
+	
 }
 
 

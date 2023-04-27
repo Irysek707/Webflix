@@ -1,10 +1,75 @@
 <title>Webflix | Subscriptions</title>
-<script src="script.js"></script>
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+
+	paypal.Button.render({
+		env: 'sandbox',
+		client: {
+			sandbox: 'AQWAg2qRpEb2nqKbdkpfMinJgU-wfqoSPsQSLE9U2apT6fB79vy-EN95vbTBTMXBf7Mn6pFzSCyaOU-b',
+			production: '<insert your production client id>'
+		},
+		style:
+		{
+			color: 'black',
+			label: 'paypal',
+			tagline: 'false'
+		},
+		commit: true,
+		payment: function (data, actions) {
+			return actions.payment.create({
+				payment: {
+					transactions: [{
+						amount: { total: '9.99', currency: 'GBP' }
+					}]
+				}
+			});
+		},
+		onAuthorize: function (data, actions) {
+			return actions.payment.execute().then(function () {
+				window.location.replace("checkout-monthly.php");
+
+			});
+		}
+	}, '#paypal-button');
+</script>
+<script>
+
+	paypal.Button.render({
+		env: 'sandbox',
+		client: {
+			sandbox: 'AQWAg2qRpEb2nqKbdkpfMinJgU-wfqoSPsQSLE9U2apT6fB79vy-EN95vbTBTMXBf7Mn6pFzSCyaOU-b',
+			production: '<insert your production client id>'
+		},
+		style:
+		{
+			color: 'black',
+			label: 'paypal',
+			tagline: 'false'
+		},
+		commit: true,
+		payment: function (data, actions) {
+			return actions.payment.create({
+				payment: {
+					transactions: [{
+						amount: { total: '99.99', currency: 'GBP' }
+					}]
+				}
+			});
+		},
+		onAuthorize: function (data, actions) {
+			return actions.payment.execute().then(function () {
+				window.location.replace("checkout-yearly.php");
+			});
+		}
+	}, '#paypal-button2');
+</script>
 
 <?php
 include('includes/logout.php');
 
-echo('
+
+echo ('
 <!-- Section 2: Subscription Info -->
 <div class="wrapper">
 <section id="subscription" class="text-center py-5">
@@ -22,8 +87,8 @@ echo('
 							<li>HD available</li>
 							<li>Cancel anytime</li>
 						</ul>
-                        <br/>
-                        <a href="payment.php" class="btn btn2 btn-lg mr-4 btn-outline-dark">Subscribe now</a>
+						Subscribe now<br/>
+                        <div id="paypal-button"></div>
 					</div>
 				</div>
 			</div>
@@ -37,16 +102,19 @@ echo('
 							<li>4HD available</li>
 							<li>Huge yearly discount</li>
 						</ul>
-                        <br/>
-                        <a href="payment.php" class="btn btn2 btn-lg mr-4 btn-outline-dark">Subscribe now</a>
+                        Subscribe now<br/>
+                        <div id="paypal-button2"></div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
 </section>
 </div>');
 
 
 include('includes/footer.php');
+
+// Close database linkection
+mysqli_close($link);
 ?>

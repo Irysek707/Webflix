@@ -12,8 +12,8 @@ body {
 }
 
 .wrapper {
-  
-  min-height: 77.7vh;
+  min-height: 66.8vh;
+  margin-top: 100px;
 }
 
 nav {
