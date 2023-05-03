@@ -41,4 +41,18 @@ VALUES ('$subscription_id', '$subscription_date', '$status', '$expiration_date',
     }
 }
 
+function checkout($page = 'checkout.php')
+{
+    # Begin URL with protocol, domain, and current directory.
+    $url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+    # Remove trailing slashes then append page name to URL.
+    $url = rtrim($url, '/\\');
+    $url .= '/' . $page;
+    # Execute redirect then quit.
+    header("Location: $url");
+    exit();
+}
+
+checkout();
+
 ?>

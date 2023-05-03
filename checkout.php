@@ -1,120 +1,82 @@
+<title>Webflix | Subscribed</title>
+
 <?php
 
+#Set page title and display header section
 include('includes/logout.php');
 
-# Check for passed total and cart.
-if (isset($_GET['total']) && ($_GET['total'] > 0) && (!empty($_SESSION['cart']))) {
-	# Open database connection.
-	require('includes/connect_db.php');
-
-	# Ticket reservation and total in 'bookings' database table.
-	$q = "INSERT INTO booking ( user_id, total, booking_date ) VALUES (" . $_SESSION['user_id'] . "," . $_GET['total'] . ", NOW() ) ";
-	$r = mysqli_query($link, $q);
-
-	# Retrieve current booking number.
-	$booking_id = mysqli_insert_id($link);
-
-	# Retrieve cart items from 'movie' database table.
-	$q = "SELECT * FROM movie WHERE id IN (";
-	foreach ($_SESSION['cart'] as $id => $value) {
-		$q .= $id . ',';
-	}
-	$q = substr($q, 0, -1) . ') ORDER BY id ASC';
-	$r = mysqli_query($link, $q);
-
-	# Store order contents in 'booking_contents' database table.
-	while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-		$query = "INSERT INTO booking_contents
-	( booking_id, id, quantity, mov_price )
-    VALUES ( $booking_id, " . $row['id'] . "," . $_SESSION['cart'][$row['id']]['quantity'] . "," . $_SESSION['cart'][$row['id']]['price'] . ")";
-		$result = mysqli_query($link, $query);
-	}
-
-	# Close database connection.
-	#mysqli_close($link);
-
-
-
-	# Display order number.
-	echo '
-<div class="container">
-	<div class="col-sm">
-	  <div class="alert alert-dark" alert-dismissible fade show" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		  <span aria-hidden="true">&times;</span>
-		</button>	
-		<h5>Thank You for booking with ECinema.  Please enjoy your movie!</h5>
-		<p>Why not visit our Snack Shop, we offer the perfect treats to enjoy with your movie.</p>
-		<hr>
-		<a href="snacks.php" class="btn btn-secondary btn-block"> Our Prices</a>
-	  </div>
-	</div>
-	</div>
-	';
-	# Remove cart items.  
-	$_SESSION['cart'] = NULL;
-}
-# Or display a message.
-else {
-	echo '<p></p>';
-}
-
+session_start();
 
 # Open database connection.
-#require ( 'includes/connect_db.php' ) ;
+require('includes/connect_db.php');
 
-# Retrieve items from 'bookings' database table.
-$q = "SELECT * FROM booking WHERE user_id={$_SESSION[user_id]}
-ORDER BY booking_date DESC
-LIMIT 1";
+#Get user_id from session
+$user_id = $_SESSION['user_id'];
 
+$sub = "SELECT * FROM subscriptions WHERE user_id = $user_id";
+$result = mysqli_query($link, $sub);
+$row = mysqli_fetch_assoc($result);
 
-$r = mysqli_query($link, $q);
-if (mysqli_num_rows($r) > 0) {
+?>
 
-	echo '<div class="container">
-		  <div class="card bg-dark mb-3">
-		    <div class="row no-gutters">
-			  <div class="col-md-4">
-			  
-			  <img width="256" class="img-fluid" alt="QR Code " src="img/qrcode.png">
-			  
-			  </div>
-				
-		  <div class="col-md-8">
-			<div class="card-body">
-				
-				';
-
-	while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-		echo '
-	<ul class="list-group list-group-flush">
-		<li class="list-group-item">
-		  <div class="form-group row">
-            <label for="booking ref" class="col-sm-12 col-form-label">
-			Booking Reference:  #EC1000' . $row['booking_id'] . '</label> 
-		  </div>
-		</li>
-		
-		<li class="list-group-item">
-		  <div class="form-group row">
-			  <label for="booking ref" class="col-sm-12 col-form-label">
-			  Total Paid:   &pound ' . $row['total'] . ' 
-			  </label>
-			</div>
-		</li>
-		</ul>
-			<hr>
-				<div class="card-footer">
-				  <small>' . $row['booking_date'] . '</small>
+<div class="wrapper">
+	<div class="container movie-view containerSub">
+		<center>
+			<h1>Welcome to Webflix subscription</h1>
+		</center>
+		<div class="flex-container">
+			<div class="d-flex flex-wrap">
+				<div class="flex-fill">
+					<div class="d-flex flex-wrap">
+						<div class="flex-fill containerSub"><br />
+							<center>Thank you for subscribing to Webflix! Here are some details about your
+									subscription:</center>
+						</div>
+						<div class="flex-fill containerSub"><br />
+							<p>
+								<center><strong>Subscription id:</strong> #<?php echo $row['subscription_id']; ?></center>
+							</p>
+						</div>
+						<div class="flex-fill">
+							<p>
+								<center><strong>Next payment due:</strong> <?php echo $row['expiration_date']; ?></center>
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>			
-';
-	}
+		</div>
+		<br />
+		<center>
+			<h2>Reccommendations</h2>
+		</center>
 
-	# Close database connection.
-	mysqli_close($link);
-}
+		<?php
+		#Open database connection
+		require('includes/connect_db.php');
 
+		#Retrive movies from 'movie' table
+		$q = "SELECT * FROM movie_stream ORDER BY RAND() LIMIT 3;";
+		$r = mysqli_query($link, $q);
+
+		echo '<div class="container">';
+		if (mysqli_num_rows($r) > 0) {
+			# Display body section.
+			while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+				echo '<div class="card card3">
+		<a href="movie.php?id=' . $row['id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['movie_title'] . '"></a>
+	</div>';
+			}
+
+			# Close database connection.
+			mysqli_close($link);
+
+		}
+		?>
+	</div>
+</div>
+
+<?php
+#Display footer section
+include('includes/footer.php');
 ?>

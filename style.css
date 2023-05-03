@@ -12,7 +12,11 @@ body {
 }
 
 .wrapper {
-  min-height: 66.8vh;
+  min-height: 77.7vh;
+}
+
+.wrapper2 {
+  min-height: 66.7vh;
   margin-top: 100px;
 }
 
@@ -105,6 +109,15 @@ h6 {
   width: 100%;
 }
 
+.containerSub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+
 .movie-view {
   background-color: rgba(13, 13, 13, 0.5);
   padding: 30px;
@@ -141,6 +154,14 @@ h6 {
   color: #a8a8a8;
 }
 
+.card3 {
+  margin: 10px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  background-color: none !important;
+  color: #a8a8a8;
+}
+
 .card2 {
   background-color: none !important;
 }
@@ -149,6 +170,12 @@ h6 {
   width: 250px;
   height: 400px;
   object-fit: cover;
+}
+
+.avatar {
+  object-fit: cover !important;
+  width: 200px !important;
+  height: 200px !important;
 }
 
 .btn {
@@ -352,3 +379,82 @@ h6 {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+/* Tabs */
+/* Style the tab buttons */
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 10px 20px;
+  font-size: 17px;
+  width: calc(33.33% - 10px);
+}
+
+/* Change background color of active tab */
+.tablink.active {
+  color: gray;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+  margin-top: 10px;
+  clear: both; /* add this property to move the tab content below the tabs */
+}
+
+/* Show the active tab content */
+.tabcontent.show {
+  display: block;
+}
+
+/* Add margin to the tabs container */
+.tabs {
+  margin: auto;
+}
+
+/*Avatar overlay*/
+/* Overlay */
+.avatar-container {
+  position: relative;
+  display: inline-block;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-container:hover .overlay {
+  visibility: visible;
+  opacity: 1;
+}
+
+.change-avatar-btn {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 17px;
+}
+

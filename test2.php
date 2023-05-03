@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Payment Page</title>
-	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-	<script>
-
-		paypal.Button.render({
-			env: 'sandbox',
-			client: {
-				sandbox: 'AQWAg2qRpEb2nqKbdkpfMinJgU-wfqoSPsQSLE9U2apT6fB79vy-EN95vbTBTMXBf7Mn6pFzSCyaOU-b',
-				production: '<insert your production client id>'
-			},
-            style:
-            {
-                color: 'black',
-                label: 'paypal',
-                tagline: 'false'
-            },
-			commit: true,
-			payment: function(data, actions) {
-				return actions.payment.create({
-					payment: {
-						transactions: [{
-							amount: { total: '9.99', currency: 'GBP' }
-						}]
-					}
-				});
-			},
-			onAuthorize: function(data, actions) {
-				return actions.payment.execute().then(function() {
-					window.alert('Payment Complete!');
-				});
-			}
-		}, '#paypal-button');
-	</script>
+  <meta charset="UTF-8">
+  <title>My Page</title>
+  <script>
+    function openTab(tabName) {
+      var i;
+      var x = document.getElementsByClassName("tab");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      document.getElementById(tabName).style.display = "block";
+    }
+    document.addEventListener("DOMContentLoaded", function(event) {
+      openTab('account-details');
+    });
+  </script>
+  <style>
+    .tab {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-	<h1>Payment Page</h1>
-	<p>Click the button below to make a payment:</p>
-	<div id="paypal-button"></div>
+  <button onclick="openTab('account-details')">Account Details</button>
+  <button onclick="openTab('my-list')">My List</button>
+  <button onclick="openTab('my-reviews')">My Reviews</button>
+  
+  <div id="account-details" class="tab">
+    <h1>Account Details</h1>
+    <p>Here's your account details.</p>
+  </div>
+  
+  <div id="my-list" class="tab">
+    <h1>My List</h1>
+    <p>Here's your list.</p>
+  </div>
+  
+  <div id="my-reviews" class="tab">
+    <h1>My Reviews</h1>
+    <p>Here are your reviews.</p>
+  </div>
 </body>
 </html>
