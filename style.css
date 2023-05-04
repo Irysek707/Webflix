@@ -178,6 +178,13 @@ h6 {
   height: 200px !important;
 }
 
+.avatar-mini {
+  object-fit: cover !important;
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 100%;
+}
+
 .btn {
   background-image: radial-gradient(circle, #1f1f1f, #222222, #242424, #272727, #2a2a2a);
   border: #272727 1px solid;
@@ -393,6 +400,15 @@ h6 {
   font-size: 17px;
   width: calc(33.33% - 10px);
 }
+.tablink2 {
+  background-color: #555;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 15px;
+}
 
 /* Change background color of active tab */
 .tablink.active {
@@ -417,6 +433,11 @@ h6 {
 .tabs {
   margin: auto;
   width: 32rem;
+}
+.tabs2 {
+  margin: auto;
+  padding: 10px !important;
+  width: 66rem !important;
 }
 
 /*Avatar overlay*/

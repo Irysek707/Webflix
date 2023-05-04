@@ -120,6 +120,8 @@ if ($r->num_rows > 0) {
                     <p><strong>Duration:</strong>
                       <?php echo $row['duration']; ?> min
                     </p>
+                    <button type="submit" class="btn btn-primary">Add to list</button>
+                    <button type="submit" class="btn btn-primary">Add review</button>
                   </div>
                 </div>
               </div>

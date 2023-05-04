@@ -34,7 +34,27 @@
     </nav>
             <br/>';
   }
-  else { 
+  else {
+  #Access session.
+  session_start();
+
+  #Redirect if not logged in.
+  if (!isset($_SESSION['user_id'])) {
+    require('login_tools.php');
+    load();
+  }
+
+#Open database connection
+require('includes/connect_db.php');
+
+#Get user_id from session
+$user_id = $_SESSION['user_id'];
+
+# Retrieve user info from 'users' database table.
+$q = "SELECT * FROM users WHERE user_id={$user_id}";
+$r = mysqli_query($link, $q);
+$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+
     echo'<nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="index.php"><h4>WEBFLIX</h4></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -44,6 +64,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+    <img src="';?><?php echo $row['avatar']; ?><?php echo'" class="avatar-mini" alt="Avatar">
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
           Hello,';?>
