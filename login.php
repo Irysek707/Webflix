@@ -6,7 +6,6 @@ include('includes/login.php');
 
 #DISPLAY COMPLETE LOGIN PAGE
 # Display any error messages if present
-
 if (isset($errors) && !empty($errors)) {
   echo '<p id="err_msg">Oops! There was a problem:</br>';
   foreach ($errors as $msg) {

@@ -61,7 +61,7 @@ include('includes/logout.php');
 ?>
 
 <div class="wrapper">
-    <div class="container movie-view">
+    <div class="container tvshow-view">
         <div class="tabs tabs2">
               <button class="tablink2 active btn btn-secondary" onclick="openTab('all')">All Shows</button>
               <button class="tablink2 btn btn-secondary" onclick="openTab('action')">Action</button>
@@ -89,7 +89,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -112,7 +112,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -135,7 +135,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -157,7 +157,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -179,7 +179,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -201,7 +201,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -223,7 +223,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -245,7 +245,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -267,7 +267,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -289,7 +289,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }
@@ -311,7 +311,7 @@ include('includes/logout.php');
                               echo '</div><div class="carousel">';
                           }
                           echo '<div class="card card3">
-                                <a href="movie.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
+                                <a href="tvshow.php?id=' . $row['tvshow_id'] . '"><img src="' . $row['img'] . '" class="card-img-top" alt="' . $row['tvshow_title'] . '"></a>
                             </div>';
                           $count++;
                       }

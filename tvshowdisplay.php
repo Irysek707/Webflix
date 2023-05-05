@@ -2,7 +2,7 @@
     # Open database connection
     require('includes/connect_db.php');
 
-    # Retrieve titles tagged as TV Show from movie_stream table
+    # Retrieve titles tagged as TV Show from tv_show table
     $q = "SELECT * FROM tv_show";
     $r = mysqli_query($link, $q);
 

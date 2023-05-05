@@ -184,8 +184,6 @@ $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
                       }
                     }
 
-                    # Close database connection.
-                    #mysqli_close( $link ) ; 
                   } else {
                     echo '<p><strong>Subscription status:</strong> inactive </p>
 			              <a href="subscription.php" style="text-decoration: none !important"><button type="button" class="btn btn-dark btn-block">Subscribe now</button></a>';

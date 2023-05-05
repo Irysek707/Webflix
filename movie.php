@@ -31,7 +31,6 @@ if ($r->num_rows > 0) {
       <title>Webflix |
         <?php echo $movie_title; ?>
       </title>
-      <!-- other meta tags and stylesheets -->
 
       <?php
       #Set page title and display header section
