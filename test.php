@@ -128,24 +128,19 @@ if ($r->num_rows > 0) {
                       $q = "SELECT * FROM my_list WHERE user_id = $user_id AND id = $movie_id";
                       $r = mysqli_query($link, $q);
                       $in_list = ($r->num_rows > 0);
-                      
-                      # Handle adding or removing the movie from the user's list
-                      if (isset($_POST['add_to_list'])) {
-                        $q = "INSERT INTO my_list (user_id, id, type) VALUES ($user_id, $movie_id, 'Movie')";
-                        mysqli_query($link, $q);
-                        $in_list = true;
-                      } elseif (isset($_POST['remove_from_list'])) {
-                        $q = "DELETE FROM my_list WHERE user_id = $user_id AND id = $movie_id";
-                        mysqli_query($link, $q);
-                        $in_list = false;
-                      }
 
                       echo'<form method="POST" action="mylist_movie.php">';
                       # Display add/remove button based on whether the movie is in the user's list
                       if ($in_list) {
                         echo "<center><button type='submit' class='btn btn-primary' name='remove_from_list'>Remove from list</button></center>";
                       } else {
-                        echo "<center><button type='submit' class='btn btn-primary' name='add_to_list'>Add to list</button>";
+                        ?>
+                        <center><form method="POST" action="mylist_movie.php">
+                        <input type="hidden" name="movie_id" value="<?php echo $movie_id; ?>">
+                        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                        <button type="submit" class="btn btn-primary" name="add_to_list">Add to list</button>
+                      </form>
+                      <?php
                       }
                       echo'</form>';
                       
