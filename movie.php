@@ -120,6 +120,77 @@ if ($r->num_rows > 0) {
                     <p><strong>Duration:</strong>
                       <?php echo $row['duration']; ?> min
                     </p>
+
+                    <?php
+                      // Display stream or subscribe button
+                      if ($subscribed) {
+                    ?>
+                    <!-- Adding reviews -->
+                    <?php
+                    echo '<div class="container"><br><br><button type="button" class="btn btn-secondary" role="button" data-toggle="modal" data-target="#rev">Add Movie Review</button><br></div>';
+                    ?>
+
+                    <!-- Review Modal -->
+                    <div class="modal fade " id="rev" tabindex="-1" role="dialog" aria-labelledby="rev" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="rev">Movie Review</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="post_action.php" method="post" accept-charset="utf-8">
+                              <div class="form-check">
+                                <label for="movie_title">Movie Title: </label>
+                                <input type="text" class="form-control" name="movie_title" value="<?php echo $row['movie_title']; ?>"required>
+                                <label for="rate">Rate Movie: </label>
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="5">&#9734; &#9734;
+                                      &#9734; &#9734; &#9734;
+                                    </label>
+                                    <br />
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="4">&#9734; &#9734;
+                                      &#9734; &#9734;
+                                    </label>
+
+                                    <br />
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="3">&#9734; &#9734;
+                                      &#9734;
+                                    </label>
+
+                                    <br />
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="2">&#9734; &#9734;
+                                    </label>
+
+                                    </br>
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="1">&#9734;
+                                    </label>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="comment">Comment:</label>
+                                    <textarea class="form-control" rows="5" id="message" name="message" required></textarea>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <input class="btn btn-dark" type="submit" value="Post Review">
+                                    </div>
+                                  </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <?php } ?>
+
                   </div>
                 </div>
               </div>
@@ -135,7 +206,7 @@ if ($r->num_rows > 0) {
         </div>
 
 
-
+        <div style="display: flex; flex-direction: column;">
         <?php
         // Display stream or subscribe button
         if ($subscribed) {
@@ -166,11 +237,60 @@ if ($r->num_rows > 0) {
         }
   }
 }
-
-
-# Close database connection.
-mysqli_close($link);
 ?>
+
+<div class="flex-container">
+  <div class="box"><br/><br/>
+<?php
+#Get passed product id and assign it to a variable.
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+
+  #Open database connection
+  require('includes/connect_db.php');
+
+  #Retrieve selective item data from 'movie' database table.
+  $q = "SELECT * FROM movie_stream WHERE id = $id";
+  $r = mysqli_query($link, $q);
+
+  #Fetch the row from the result set and get the movie title
+  if ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+      $movie_title = $row['movie_title'];
+  } else {
+      # Handle error if the row is not found
+      echo "No data found for id $id";
+      exit;
+  }
+
+  # Retrieve items from 'mov-review' database table.
+  $a = "SELECT * FROM mov_rev WHERE movie_title='$movie_title' ORDER BY post_date DESC";
+  $b = mysqli_query($link, $a);
+
+  if (mysqli_num_rows($b) > 0) {
+      echo '<h3>Reviews</h3><div class="containerReview">';
+      while ($row = mysqli_fetch_array($b, MYSQLI_ASSOC)) {
+          echo '<div class="flex-column"><p><h4>Rating:  ' . $row['rate'] . ' &#9734</h4></p>
+                    <p>' . $row['message'] . '</p>
+                    <footer class="blockquote-footer">
+                    <span>' . $row['first_name'] . ' ' . $row['last_name'] . '</span> 
+                    <br/>
+                    <cite title="Source Title"> ' . $row['post_date'] . '</cite>
+                    <br><br>
+                    </button></footer></div>';
+      }
+  } else {
+      echo '<h3>Reviews</h3><div class="container">
+                <br>
+                <p>There is no reviews for this movie.</p>
+                </div>';
+  }
+}
+?>
+</div>
+</div>
+</div>
+
+
   </div>
 
 </div>
@@ -178,5 +298,9 @@ mysqli_close($link);
 
 
 <?php
+
+# Close database connection.
+mysqli_close($link);
+
 include('includes/footer.php');
 ?>

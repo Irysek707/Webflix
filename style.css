@@ -117,6 +117,14 @@ h6 {
   width: 100%;
 }
 
+.containerReview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
 
 .movie-view {
   background-color: rgba(13, 13, 13, 0.5);
@@ -223,10 +231,11 @@ h6 {
 }
 
 .alert-dark {
-  background-color: #180e19 !important;
+  background-color: #0f0d16 !important;
   color: #a8a8a8 !important;
-  border: #0d0d0d 3px !important;
-  box-shadow: #260c1c 2px 2px 0px;
+  border: #1c162a 3px !important;
+  box-shadow: #1c162a 2px 2px 0px;
+  width:40%;
 }
 
 .modal-content {

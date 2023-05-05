@@ -364,21 +364,90 @@ $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
                 </div>
               </div>
 
-      <div id="my-list" class="tabcontent">
-        <br />
-        <h2>My List</h2>
-        <!-- Add My List content here -->
-      </div>
+              <div id="my-list" class="tabcontent">
+                <br />
+                <h2>My List</h2>
+                <!-- Add My List content here -->
+              </div>
 
-      <div id="my-reviews" class="tabcontent">
-        <br />
-        <h2>My Reviews</h2><br />
-        <!-- Add My Reviews content here -->
+              <div id="my-reviews" class="tabcontent">
+                <br />
+                <h2>My Reviews</h2><br />
+                <div class="container">
+                <?php
+                  # Retrieve items from 'mov-review' database table.
+                  $a = "SELECT * FROM mov_rev WHERE id=$user_id ORDER BY post_date DESC";
+
+                  $b = mysqli_query($link, $a);
+                  if (mysqli_num_rows($b) > 0) {
+                  echo '<h3>Movie reviews</h3><div class="container">';
+                  while ($row = mysqli_fetch_array($b, MYSQLI_ASSOC)) {
+                  echo '<div class="alert alert-dark" role="alert">
+                          <h4 class="alert-heading">' . $row['movie_title'] . '  </h4>
+                          <p>Rating:  ' . $row['rate'] . ' &#9734</p>
+                          <p>' . $row['message'] . '</p>
+                          <hr>
+                          <footer class="blockquote-footer">
+                          <span>' . $row['first_name'] . ' ' . $row['last_name'] . '</span> 
+                          <cite title="Source Title"> ' . $row['post_date'] . '</cite>
+                          <br><br>
+                          <button type="button" class="btn btn-light btn-block">
+                          <a href="delete_post.php?post_id=' . $row['post_id'] . '"> <i class="fas fa-trash-alt"></i>  Delete Post</a><br>
+                          </footer>
+                          </button>
+                        </div>';
+                  }
+                  } else {
+                  echo '<h3>Movie reviews</h3><div class="container">
+                          <br>
+                          <p>You have no movie reviews.</p>
+                          </div>';
+                    }
+                ?>
+                </div>
+
+                
+                <div class="container">
+                <?php
+                  # Retrieve items from 'tv-review' database table.
+                  $c = "SELECT * FROM tv_rev WHERE id=$user_id ORDER BY post_date DESC";
+
+                  $d = mysqli_query($link, $c);
+                  if (mysqli_num_rows($d) > 0) {
+                  echo '<h3>TV Show reviews</h3><div class="container">';
+                  while ($row = mysqli_fetch_array($d, MYSQLI_ASSOC)) {
+                  echo '<div class="alert alert-dark" role="alert">
+                          <h4 class="alert-heading">' . $row['tvshow_title'] . '  </h4>
+                          <p>Rating:  ' . $row['rate'] . ' &#9734</p>
+                          <p>' . $row['message'] . '</p>
+                          <hr>
+                          <footer class="blockquote-footer">
+                          <span>' . $row['first_name'] . ' ' . $row['last_name'] . '</span> 
+                          <cite title="Source Title"> ' . $row['post_date'] . '</cite>
+                          <br><br>
+                          <button type="button" class="btn btn-light btn-block">
+                          <a href="delete_post.php?post_id=' . $row['post_id'] . '"> <i class="fas fa-trash-alt"></i>  Delete Post</a><br>
+                          </footer>
+                          </button>
+                        </div>';
+                  }
+                  } else {
+                  echo '<h3>TV Show reviews</h3><div class="container">
+                          <br>
+                          <p>You have no show reviews.</p>
+                          </div>';
+                    }
+                ?>
+                </div>
+                
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </div>
 </div>
 </div>

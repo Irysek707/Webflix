@@ -14,7 +14,7 @@ require('includes/connect_db.php');
 if (isset($_GET['post_id']))
     $post_id = $_GET['post_id'];
 
-$sql = "DELETE FROM mov_rev WHERE post_id='$post_id'";
+$sql = "DELETE FROM tv_rev WHERE post_id='$post_id'";
 if ($link->query($sql) === TRUE) {
     # Redirect to the previous page.
     header("Location: " . $_SERVER['HTTP_REFERER']);

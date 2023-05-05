@@ -126,6 +126,72 @@ if ($r->num_rows > 0) {
                     <p><strong>Episodes:</strong>
                       <?php echo $row['number_of_episodes']; ?>
                     </p>
+
+                    <!-- Adding reviews -->
+                    <?php
+                    echo '<div class="container"><br><br><button type="button" class="btn btn-secondary" role="button" data-toggle="modal" data-target="#rev">Add Review</button><br></div>';
+                    ?>
+
+                    <!-- Review Modal -->
+                    <div class="modal fade " id="rev" tabindex="-1" role="dialog" aria-labelledby="rev" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="rev">TV Show Review</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="tv_post_action.php" method="post" accept-charset="utf-8">
+                              <div class="form-check">
+                                <label for="movie_title">TV Show Title: </label>
+                                <input type="text" class="form-control" name="movie_title" value="<?php echo $row['tvshow_title']; ?>"required>
+                                <label for="rate">Rate Show: </label>
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="5">&#9734; &#9734;
+                                      &#9734; &#9734; &#9734;
+                                    </label>
+                                    <br />
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="4">&#9734; &#9734;
+                                      &#9734; &#9734;
+                                    </label>
+
+                                    <br />
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="3">&#9734; &#9734;
+                                      &#9734;
+                                    </label>
+
+                                    <br />
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="2">&#9734; &#9734;
+                                    </label>
+
+                                    </br>
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" name="rate" value="1">&#9734;
+                                    </label>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="comment">Comment:</label>
+                                    <textarea class="form-control" rows="5" id="message" name="message" required></textarea>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <input class="btn btn-dark" type="submit" value="Post Review">
+                                    </div>
+                                  </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    
                   </div>
                 </div>
               </div>

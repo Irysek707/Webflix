@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
     # Open database connection.
     require('includes/connect_db.php');
     # Execute inserting into 'review' database table.
-$q = "INSERT INTO mov_rev(id,first_name,last_name,movie_title,rate, message, post_date) 
+$q = "INSERT INTO tv_rev(id,first_name,last_name,tvshow_title,rate, message, post_date) 
 VALUES('{$_SESSION[user_id]}',
 '{$_SESSION[first_name]}',
 '{$_SESSION[last_name]}',
-'{$_POST[movie_title]}',
+'{$_POST[tvshow_title]}',
 '{$_POST[rate]}',
 '{$_POST[message]}',NOW() )";
 $r = mysqli_query($link, $q);
