@@ -2,11 +2,29 @@
 # Open database connection
 require('includes/connect_db.php');
 
-# get search query from form submission
+# Get the user's ID from the session
+$user_id = $_SESSION['user_id'];
+
+# Retrieve user info from the 'users' database table
+$query = "SELECT * FROM users WHERE user_id = $user_id";
+$result = mysqli_query($link, $query);
+
+if ($result && mysqli_num_rows($result) > 0) {
+  $row = mysqli_fetch_assoc($result);
+
+  # Redirect if the user's permissions are 'blocked'
+  if ($row['permissions'] === 'blocked') {
+    header('Location: index.php');
+    exit();
+  }
+}
+
+
+# Get search query from form submission
 if (isset($_GET['query'])) {
   $search_query = mysqli_real_escape_string($link, $_GET['query']);
 
-  # search for movie and TV show titles
+  # Search for movie and TV show titles
   $sql1 = "SELECT id, movie_title AS title FROM movie_stream WHERE movie_title LIKE '%$search_query%'";
   $sql2 = "SELECT tvshow_id, tvshow_title AS title FROM tv_show WHERE tvshow_title LIKE '%$search_query%'";
 
@@ -35,7 +53,7 @@ if (isset($_GET['query'])) {
   echo '<center>No results found.</center>';
 }
 
-# Close database connection.
+# Close database connection
 mysqli_close($link);
 ?>
 
@@ -85,6 +103,7 @@ $user_id = $_SESSION['user_id'];
 $q = "SELECT * FROM users WHERE user_id={$user_id}";
 $r = mysqli_query($link, $q);
 $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+
   ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark" data-bs-theme="dark">

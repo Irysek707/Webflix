@@ -1,4 +1,34 @@
 <title>Webflix | Subscriptions</title>
+<?php
+  #Access session.
+  session_start();
+
+  #Redirect if not logged in.
+  if (!isset($_SESSION['user_id'])) {
+    require('login_tools.php');
+    load();
+  }
+
+#Open database connection
+require('includes/connect_db.php');
+
+# Get the user's ID from the session
+$user_id = $_SESSION['user_id'];
+
+# Retrieve user info from the 'users' database table
+$query = "SELECT * FROM users WHERE user_id = $user_id";
+$result = mysqli_query($link, $query);
+
+if ($result && mysqli_num_rows($result) > 0) {
+  $row = mysqli_fetch_assoc($result);
+
+  # Redirect if the user's permissions are 'blocked'
+  if ($row['permissions'] === 'blocked') {
+    header('Location: index.php');
+    exit();
+  }
+}
+?>
 
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 <script>
@@ -66,7 +96,6 @@
 </script>
 
 <?php
-include('includes/logout.php');
 
 
 echo ('

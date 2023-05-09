@@ -20,6 +20,10 @@
 
 <?php
 
+#Open database connection
+require('includes/connect_db.php');
+
+
 echo '<nav class="navbar bg-body-tertiary">
 <div class="container-fluid">
 <a class="navbar-brand" href="index.php"><h4>WEBFLIX</h4>
@@ -31,10 +35,24 @@ echo '<nav class="navbar bg-body-tertiary">
         <br/>';
 
 echo '<br><div class="container"><img src="img/logo2.png"></div><br/><br/>';
+?>
 
-#Open database connection
-require('includes/connect_db.php');
+<!-- Modal HTML -->
+<div id="blockedModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">You are Blocked</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Your access to this page is blocked.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
+<?php
 echo ('
 <!-- Section 1: Short Intro -->
 <section id="intro" class="text-center">

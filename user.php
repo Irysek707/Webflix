@@ -1,3 +1,4 @@
+<title>Webflix | User profile</title>
 <?php
 #DISPLAY COMPLETE LOGGED IN PAGE
 #Access session
@@ -347,8 +348,52 @@ $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
                       <form action="change_country.php" method="post">
                         <div class="form-group">
                           <label for="newCountry">New Country</label>
-                          <input type="text" class="form-control" id="newCountry" name="newCountry"
-                            placeholder="Enter new country">
+                          <select class="form-control" placeholder="Country" aria-label="Country" name="country" id="country">
+          <?php
+          $countries = array(
+            "United Kingdom",
+            "Argentina",
+            "Australia",
+            "Belgium",
+            "Brazil",
+            "Canada",
+            "Chile",
+            "China",
+            "Colombia",
+            "Denmark",
+            "Egypt",
+            "Finland",
+            "France",
+            "Germany",
+            "Ghana",
+            "India",
+            "Italy",
+            "Japan",
+            "Kenya",
+            "Mexico",
+            "Morocco",
+            "Netherlands",
+            "New Zealand",
+            "Nigeria",
+            "Norway",
+            "Peru",
+            "Poland",
+            "Portugal",
+            "Russia",
+            "South Africa",
+            "South Korea",
+            "Spain",
+            "Sweden",
+            "Switzerland",
+            "Tunisia",
+            "United States"
+          );
+
+          foreach ($countries as $country) {
+            echo "<option value=\"" . $country . "\">" . $country . "</option>";
+          }
+          ?>
+        </select>
                         </div>
                         <div class="form-group">
                           <label for="password">Password</label>
@@ -386,7 +431,6 @@ $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
                           <p>' . $row['message'] . '</p>
                           <hr>
                           <footer class="blockquote-footer">
-                          <span>' . $row['first_name'] . ' ' . $row['last_name'] . '</span> 
                           <cite title="Source Title"> ' . $row['post_date'] . '</cite>
                           <br><br>
                           <button type="button" class="btn btn-light btn-block">
@@ -420,7 +464,6 @@ $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
                           <p>' . $row['message'] . '</p>
                           <hr>
                           <footer class="blockquote-footer">
-                          <span>' . $row['first_name'] . ' ' . $row['last_name'] . '</span> 
                           <cite title="Source Title"> ' . $row['post_date'] . '</cite>
                           <br><br>
                           <button type="button" class="btn btn-light btn-block">

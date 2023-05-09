@@ -145,8 +145,8 @@ if ($r->num_rows > 0) {
                           <div class="modal-body">
                             <form action="tv_post_action.php" method="post" accept-charset="utf-8">
                               <div class="form-check">
-                                <label for="movie_title">TV Show Title: </label>
-                                <input type="text" class="form-control" name="movie_title" value="<?php echo $row['tvshow_title']; ?>"required>
+                                <label for="tvshow_title">TV Show Title: </label>
+                                <input type="text" class="form-control" name="tvshow_title" value="<?php echo $row['tvshow_title']; ?>"required>
                                 <label for="rate">Rate Show: </label>
                                   <div class="form-check">
                                     <label class="form-check-label">
@@ -257,17 +257,68 @@ if ($r->num_rows > 0) {
             }
 
           } else {
-            echo '<br/><a href="subscription.php"><button class="btn btn-dark btn-outline-dark">Subscribe to watch the tvshow</button></a>';
+            echo '<br/><a href="subscription.php"><button class="btn btn-dark btn-outline-dark">Subscribe to watch the show</button></a>';
           }
   }
 }
+?>
 
+</div>
 
+<div class="flex-container">
+  <div class="box"><br/><br/>
+<?php
+#Get passed product id and assign it to a variable.
+if (isset($_GET['id'])) {
+  $id = $_GET['id'];
+
+  #Open database connection
+  require('includes/connect_db.php');
+
+  #Retrieve selective item data from 'tv_show' database table.
+  $q = "SELECT * FROM tv_show WHERE tvshow_id = $id";
+  $r = mysqli_query($link, $q);
+
+  #Fetch the row from the result set and get the tvshow title
+  if ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+      $tvshow_title = $row['tvshow_title'];
+  } else {
+      # Handle error if the row is not found
+      echo "No data found for id $id";
+      exit;
+  }
+
+  # Retrieve items from 'tv_rev' database table.
+  $a = "SELECT * FROM tv_rev WHERE tvshow_title='$tvshow_title' ORDER BY post_date DESC";
+  $b = mysqli_query($link, $a);
+
+  if (mysqli_num_rows($b) > 0) {
+      echo '<h3>Reviews</h3><div class="containerReview">';
+      while ($row = mysqli_fetch_array($b, MYSQLI_ASSOC)) {
+          echo '<div class="flex-column"><p><h4>Rating:  ' . $row['rate'] . ' &#9734</h4></p>
+                    <p>' . $row['message'] . '</p>
+                    <footer class="blockquote-footer">
+                    <span>' . $row['first_name'] . ' ' . $row['last_name'] . '</span> 
+                    <br/>
+                    <cite title="Source Title"> ' . $row['post_date'] . '</cite>
+                    <br><br>
+                    </button></footer></div>';
+      }
+  } else {
+      echo '<h3>Reviews</h3><div class="container">
+                <br>
+                <p>There is no reviews for this tv show.</p>
+                </div>';
+  }
+}
+?>
+</div>
+</div>
+
+<?php
 # Close database connection.
 mysqli_close($link);
 ?>
-
-    </div>
 
   </div>
 </div>

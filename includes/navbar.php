@@ -47,13 +47,22 @@
 #Open database connection
 require('includes/connect_db.php');
 
-#Get user_id from session
+# Get the user's ID from the session
 $user_id = $_SESSION['user_id'];
 
-# Retrieve user info from 'users' database table.
-$q = "SELECT * FROM users WHERE user_id={$user_id}";
-$r = mysqli_query($link, $q);
-$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+# Retrieve user info from the 'users' database table
+$query = "SELECT * FROM users WHERE user_id = $user_id";
+$result = mysqli_query($link, $query);
+
+if ($result && mysqli_num_rows($result) > 0) {
+  $row = mysqli_fetch_assoc($result);
+
+  # Redirect if the user's permissions are 'blocked'
+  if ($row['permissions'] === 'blocked') {
+    header('Location: index.php');
+    exit();
+  }
+}
 
     echo'<nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="index.php"><h4>WEBFLIX</h4></a>
