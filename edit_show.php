@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $episodes = $_POST["number_of_episodes"];
 
     // Prepare the UPDATE statement
-    $query = "UPDATE tv_show SET genre_name = ?, tvshow_title = ?, tvshow_description = ?, tvshow_trailer = ?, img = ?, release_year = ?, language = ?, num_seasons = ?, number_of_episodes = ? WHERE id = ?";
+    $query = "UPDATE tv_show SET genre_name = ?, tvshow_title = ?, tvshow_description = ?, tvshow_trailer = ?, img = ?, release_year = ?, language = ?, num_seasons = ?, number_of_episodes = ? WHERE tvshow_id = ?";
 
     // Prepare the statement
     $stmt = mysqli_prepare($link, $query);
