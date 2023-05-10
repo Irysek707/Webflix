@@ -9,6 +9,8 @@
     load();
   }
 
+  include('includes/navbar.php');
+
 #Open database connection
 require('includes/connect_db.php');
 
