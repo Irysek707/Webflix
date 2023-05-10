@@ -123,7 +123,6 @@ $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="user.php">Account details</a>
-          <a class="dropdown-item" href="my_reviews.php">Review history</a>
           <a class="dropdown-item" href="logout.php">Logout</a>
         </div>
 

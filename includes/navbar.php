@@ -82,12 +82,14 @@ if ($result && mysqli_num_rows($result) > 0) {
         echo'</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="user.php">Account details</a>
-          <a class="dropdown-item" href="my_reviews.php">Review history</a>
           <a class="dropdown-item" href="logout.php">Logout</a>
         </div>
 
         <li class="nav-item">
-        <a class="nav-link active" href="coming_soon.php">Search</a>
+        <a class="nav-link active" href="movies.php">Movies</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link active" href="tvshows.php">TV Shows</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="subscription.php">Subscriptions</a>
