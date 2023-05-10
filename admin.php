@@ -401,12 +401,15 @@ require('includes/connect_db.php');
             <div class="modal-body">
               <form method="POST" action="add_genre.php">
                 <label for="genre_name">Genre Name:</label>
-                <input type="text" name="genre_name" id="genre_name">
+                <input type="text" name="genre_name" id="genre_name" class="form-control">
 
                 <label for="genre_description">Genre Description:</label>
-                <input type="text" name="genre_description" id="genre_description">
+                <input type="text" name="genre_description" id="genre_description" class="form-control">
 
-                <button type="submit">Submit</button>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <input type="submit" name="btnChangeName" class="btn btn-primary" value="Save Changes">
+                </div>
               </form>
 
             </div>
