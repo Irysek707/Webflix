@@ -814,7 +814,8 @@ require('includes/connect_db.php');
       }
       ?>
 
-      <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#add-show-modal">Add show</button>
+      
+      <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#add-show-modal" type="button">Add show</button>
     </div>
   </div>
 
@@ -857,65 +858,72 @@ function openDeleteShowModal(tvshowId) {
 </script>
 
 
-
-
   <!-- Add Show Modal -->
-  <div class="modal fade" id="addShowModal" tabindex="-1" role="dialog" aria-labelledby="add-show-modal-label" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="add-show-modal-label">Add Show</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="add_show.php" method="post">
-          <div class="form-group">
-            <label for="addShowGenreInput">Genre Name:</label>
-            <input type="text" name="genre_name" id="genre_name" class="form-control" value="">
-          </div>
-          <div class="form-group">
-            <label for="addShowTitleInput">Title:</label>
-            <input type="text" name="tvshow_title" id="tvshow_title" class="form-control" value="">
-          </div>
-          <div class="form-group">
-            <label for="addShowDescriptionInput">Description:</label>
-            <input type="text" name="tvshow_description" id="tvshow_description" class="form-control" value="">
-          </div>
-          <div class="form-group">
-            <label for="addShowTrailerInput">Trailer:</label>
-            <input type="text" name="tvshow_trailer" id="tvshow_trailer" class="form-control" value="">
-          </div>
-          <div class="form-group">
-            <label for="addShowImageInput">Image:</label>
-            <input type="text" name="img" id="img" class="form-control" value="">
-          </div>
-          <div class="form-group">
-            <label for="addShowReleaseYearInput">Release Year:</label>
-            <input type="number" name="release_year" id="release_year" class="form-control" value="">
-          </div>
-          <div class="form-group">
-            <label for="addShowLanguageInput">Language:</label>
-            <input type="text" name="language" id="language" class="form-control" value="">
-          </div>
-          <div class="form-group">
-            <label for="addShowSeasonsInput">Seasons:</label>
-            <input type="number" name="num_seasons" id="num_seasons" class="form-control" value="">
-          </div>
-          <div class="form-group">
-            <label for="addShowEpisodesInput">Episodes:</label>
-            <input type="number" name="number_of_episodes" id="number_of_episodes" class="form-control" value="">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <input type="submit" name="btnAddShow" class="btn btn-primary" value="Add Show">
-          </div>
-        </form>
+  <div class="modal fade" id="add-show-modal" tabindex="-1" role="dialog" aria-labelledby="add-show-modal-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="add-show-modal-label">Add Show</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="add_show.php" method="post">
+            <div class="form-group">
+              <label for="addShowGenreInput">Genre Name:</label>
+              <input type="text" name="genre_name" id="genre_name" class="form-control"
+                value="<?php echo $row['genre_name']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="addShowTitleInput">Title:</label>
+              <input type="text" name="tvshow_title" id="tvshow_title" class="form-control"
+                value="<?php echo $row['tvshow_title']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="addShowDescriptionInput">Description:</label>
+              <input type="text" name="tvshow_description" id="tvshow_description" class="form-control"
+                value="<?php echo $row['tvshow_description']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="addShowTrailerInput">Trailer:</label>
+              <input type="text" name="tvshow_trailer" id="tvshow_trailer" class="form-control"
+                value="<?php echo $row['tvshow_trailer']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="addShowImageInput">Image:</label>
+              <input type="text" name="img" id="img" class="form-control" value="<?php echo $row['img']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="addShowReleaseYearInput">Release Year:</label>
+              <input type="number" name="release_year" id="release_year" class="form-control"
+                value="<?php echo $row['release_year']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="addShowLanguageInput">Language:</label>
+              <input type="text" name="language" id="language" class="form-control"
+                value="<?php echo $row['language']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="addShowSeasonsInput">Seasons:</label>
+              <input type="number" name="num_seasons" id="num_seasons" class="form-control"
+                value="<?php echo $row['num_seasons']; ?>">
+            </div>
+            <div class="form-group">
+              <label for="addShowEpisodesInput">Episodes:</label>
+              <input type="number" name="number_of_episodes" id="number_of_episodes" class="form-control"
+                value="<?php echo $row['number_of_episodes']; ?>">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <input type="submit" name="btnAddShow" class="btn btn-primary" value="Add Show">
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
